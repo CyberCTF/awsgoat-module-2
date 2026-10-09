@@ -35,6 +35,12 @@ resources), then puts the placeholder back.
 
 The container instance is a t2.micro: an account on the AWS Free plan refuses it (only
 Free-Tier-eligible types such as t3.micro), so use an account on a paid plan.
+
+After `down`, ECS keeps the deregistered task definition revision (`ECS-Lab-Task-definition:N`,
+INACTIVE): `aws ecs delete-task-definitions --task-definitions ECS-Lab-Task-definition:N` removes
+it. AWS also creates its service-linked roles (ECS, Auto Scaling, Elastic Load Balancing, RDS) on
+first use; they cost nothing.
+
 Lab guide: [`app/attack-manuals/module-2/`](app/attack-manuals/module-2).
 
 Upstream version and commit: [UPSTREAM.md](UPSTREAM.md).
