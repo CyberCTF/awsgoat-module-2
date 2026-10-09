@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://www.isoloom.com/schema/v1.json
+# AWSGoat module 2 by INE (https://github.com/ine-labs/AWSGoat): an HR payroll web application on
+# ECS (EC2 launch type) behind a load balancer, with a MySQL RDS database, vulnerable by design:
+# SQL injection, file upload, ECS container breakout and IAM privilege escalation.
+# Source in app/ (upstream, unchanged); the Terraform root is app/modules/module-2.
+# Run: `aws login`, then `isoloom run cloud-services` TWICE (the first apply stops on upstream's
+# "inconsistent result" error, see README.md); end it with `isoloom down cloud-services`.
+version: 1
+name: awsgoat-module-2
+
+cloud:
+  provider: aws
+  terraform: app/modules/module-2
+  outputs:
+    app: ad_Target_URL
+  hourly_usd: 0.07
+
+checks:
+  - name: the payroll application answers
+    http: "http://{{ cloud.outputs.app }}"
+    wait: 900
+  - name: it is the AWSGoat login page
+    http: "http://{{ cloud.outputs.app }}"
+    contains: login
+
+message: |
+  The application answers at http://{{ cloud.outputs.app }} (the container takes a minute
+  to start). Start as an outsider and find your way to the AWS account. Walkthrough:
+  app/attack-manuals/module-2/.

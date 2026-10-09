@@ -1,0 +1,8 @@
+{
+  "title": "AWSGoat: module 2",
+  "description": "A damn vulnerable AWS infrastructure by INE, deployed into your own AWS account: an HR payroll web application on ECS behind a load balancer, with a MySQL RDS database, featuring SQL injection, insecure file upload, ECS container breakout and IAM privilege escalation.",
+  "question": "Starting from the payroll application as an outsider, escalate to administrator access in the AWS account.",
+  "category": "MISC",
+  "difficulty": 3,
+  "evidence_kind": "SECRET"
+}
