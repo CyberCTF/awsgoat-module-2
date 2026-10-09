@@ -41,5 +41,14 @@
     "default_position": "networks",
     "positions": []
   },
-  "message": null
+  "cloud": {
+    "provider": "aws",
+    "terraform": "app/modules/module-2",
+    "outputs": [
+      "app"
+    ],
+    "inputs": [],
+    "hourly_usd": 0.07
+  },
+  "message": "The application answers at http://{{ cloud.outputs.app }} (the container takes a minute\nto start). Start as an outsider and find your way to the AWS account. Walkthrough:\napp/attack-manuals/module-2/.\n"
 }
